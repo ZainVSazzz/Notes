@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment
+.env
+**/.env
+!**/.env.example
+
+# Logs
+logs/
+**/logs/
+*.log
+
+# Build output
+dist/
+**/dist/
+build/
+**/build/
+
+# Uploaded images (runtime user content)
+notes-backend/public/images/*
+!notes-backend/public/images/.gitkeep
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# PM2
+.pm2/

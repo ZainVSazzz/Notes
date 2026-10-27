@@ -1,0 +1,70 @@
+/* Global design tokens, reset, dan tipografi dasar.
+   Dipakai oleh semua fitur, jadi tetap di sini (bukan milik satu fitur). */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --app-bg: #f4f7fb;
+  --surface: rgba(255, 255, 255, 0.86);
+  --surface-solid: #ffffff;
+  --surface-soft: #f8fafc;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #4f46e5;
+  --primary-2: #0ea5e9;
+  --danger: #ef4444;
+  --shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+}
+
+.app-dark {
+  --app-bg: #09111f;
+  --surface: rgba(15, 23, 42, 0.82);
+  --surface-solid: #111827;
+  --surface-soft: #0f172a;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --border: #273449;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(99, 102, 241, 0.24), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.2), transparent 30%),
+    var(--app-bg);
+  color: var(--text);
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+body,
+.p-component {
+  font-size: 13px;
+}
+
+.p-button {
+  font-size: 12px;
+}
+
+/* Form primitive — dipakai di form login maupun form catatan */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 14px;
+}

@@ -1,0 +1,338 @@
+/* Style untuk shell layout dashboard (sidebar + area konten).
+   Dipakai bersama oleh semua halaman di dalam dashboard. */
+
+.dashboard {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  overflow: hidden;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  transition: width 0.2s ease, padding 0.2s ease;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 6px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.brand-row:hover {
+  background: var(--surface-soft);
+}
+
+.brand-chevron {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  font-size: 17px;
+}
+
+.brand-text {
+  margin: 0;
+  font-size: 19px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.add-note-button,
+.logout-button {
+  width: 100%;
+  border-radius: 14px !important;
+}
+
+.side-nav {
+  display: grid;
+  gap: 8px;
+}
+
+.side-nav button {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 12px;
+  color: var(--muted);
+  background: transparent;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: left;
+}
+
+.side-nav button:hover,
+.side-nav button.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+}
+
+/* Bagian bawah: profil + logout */
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+}
+
+.profile-card .p-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+}
+
+.profile-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.profile-info strong {
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.profile-info span {
+  color: var(--muted);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content-wrap {
+  position: relative;
+  min-width: 0;
+  padding: 22px;
+}
+
+.mobile-menu-button {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  top: 16px;
+  left: 16px;
+  width: 42px;
+  height: 38px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--surface-solid);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.sidebar .p-button {
+  padding-block: 0.45rem;
+  padding-inline: 0.65rem;
+}
+
+/* ===== Mode collapsed (hanya desktop) ===== */
+@media (min-width: 1081px) {
+  .dashboard.collapsed {
+    grid-template-columns: 78px 1fr;
+  }
+
+  .dashboard.collapsed .sidebar {
+    padding: 16px 12px;
+  }
+
+  .dashboard.collapsed .brand-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dashboard.collapsed .brand-text {
+    display: none;
+  }
+
+  .dashboard.collapsed .collapse-toggle {
+    margin-left: 0;
+  }
+
+  .dashboard.collapsed .side-nav button {
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .dashboard.collapsed .side-nav button span {
+    display: none;
+  }
+
+  .dashboard.collapsed .add-note-button,
+  .dashboard.collapsed .logout-button {
+    padding-inline: 0 !important;
+  }
+
+  .dashboard.collapsed .add-note-button .p-button-label,
+  .dashboard.collapsed .logout-button .p-button-label {
+    display: none;
+  }
+
+  .dashboard.collapsed .profile-card {
+    justify-content: center;
+    padding: 8px;
+  }
+
+  .dashboard.collapsed .profile-info {
+    display: none;
+  }
+}
+
+/* ===== Mobile: sidebar jadi drawer (abaikan collapsed) ===== */
+@media (max-width: 1080px) {
+  .dashboard,
+  .dashboard.collapsed {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    z-index: 80;
+    left: 0;
+    transform: translateX(-102%);
+    width: 240px;
+    transition: transform 0.2s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    z-index: 70;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .collapse-toggle {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .content-wrap {
+    padding: 72px 18px 24px;
+  }
+}
+
+.sidebar-cabang {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-cabang-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 10px;
+
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+
+  color: var(--text-color-secondary);
+}
+
+.sidebar-cabang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-cabang-item {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 6px 8px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition: all .15s ease;
+}
+
+.sidebar-cabang-item:hover {
+  background: rgba(59,130,246,.12);
+}
+
+.cabang-text {
+  font-size: 12px;
+  font-weight: 500;
+
+  text-align: left;
+  color: var(--text-color);
+}
+
+.sidebar-cabang-item i {
+  font-size: 10px;
+  opacity: .5;
+}
